@@ -36,6 +36,16 @@ export function zodFieldErrors(error: ZodError): Record<string, string> {
 
 /** Normalise any thrown error into a user-facing ActionState. */
 export function toActionState(error: unknown): ActionState {
+  // Never swallow Next.js redirects thrown from inside try/catch.
+  if (
+    typeof error === 'object' &&
+    error !== null &&
+    'digest' in error &&
+    typeof (error as { digest: unknown }).digest === 'string' &&
+    (error as { digest: string }).digest.startsWith('NEXT_REDIRECT')
+  ) {
+    throw error;
+  }
   if (error instanceof ZodError) {
     return { message: 'Fix the highlighted fields and try again.', errors: zodFieldErrors(error) };
   }

@@ -23,8 +23,8 @@ npm run dev              # http://localhost:3000
 Production: `npm run build && npm run start`.
 
 Quality gates: `npm run lint` · `npm run typecheck` · `npm test`
-(74 tests: password policy, transitions, pricing, billing idempotency,
-discount limits/expiry, RBAC isolation, auth/reset flows).
+(77 tests: password policy, transitions, pricing, billing idempotency,
+discount limits/expiry, RBAC isolation, auth/reset flows, action-state).
 
 Utilities: `npm run journey` (end-to-end lifecycle check against the seeded
 database) · `npm run perf` (page-timing harness; requires a running server).
